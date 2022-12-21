@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: http-server
+spec:
+    selector:
+        matchLabels:
+            app: http-server
+    template:
+        metadata:
+            labels:
+                app: http-server
+        spec:
+            containers:
+            - name: http-server
+              image: hasura/httpserver:latest
+              imagePullPolicy: Never
+              env:
+              - name: ENV_VAR_1
+                value: "env_var_1_value"
+              - name: ENV_VAR_2
+                value: "env_var_2_value"
+              ports:
+              - containerPort: 8080
+
+
